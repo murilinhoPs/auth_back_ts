@@ -1,0 +1,57 @@
+{
+  "name": "challenge_bt_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --files src/server.ts",
+    "typeorm-ts": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "typeorm_run_migration": "ts-node-dev ./node_modules/typeorm/cli.js migration:run",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "typeorm-run": "npm run typeorm migration:run",
+    "prepare": "npm i typescript ts-node typeorm",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "start1": "node --experimental-modules --es-module-specifier-resolution=node ./dist/server.js",
+    "prettier-watch": "onchange './**/*.ts' -- prettier --write {{changed}}",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "muriloPs",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "bcrypt": "^5.0.0",
+    "class-validator": "^0.12.2",
+    "cors": "^2.8.5",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.14",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.0",
+    "ts-node": "^9.0.0",
+    "typeorm": "^0.2.28",
+    "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/cors": "^2.8.8",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.8",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/multer": "^1.4.4",
+    "@types/nodemailer": "^6.4.0",
+    "@types/yup": "^0.29.8",
+    "dotenv": "^8.2.0",
+    "onchange": "^7.1.0",
+    "prettier": "^2.1.2",
+    "ts-node-dev": "^1.0.0",
+    "typescript": "^4.0.5"
+  },
+  "snippets": {
+    "generate_secrets": "node> require('crypto').randomBytes(64).toString('hex')"
+  }
+}

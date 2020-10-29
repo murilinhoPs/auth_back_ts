@@ -1,0 +1,7 @@
+HOST=localhost
+PORT=3000
+MAIL=
+MAIL_SECRET=
+ADMIN_SECRET=
+TOKEN_SECRET=segredo gerado pro jwt
+REFRESH_TOKEN_SECRET=segredo gerado pro refresh do jwt
