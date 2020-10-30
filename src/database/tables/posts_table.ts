@@ -5,11 +5,11 @@ export default new Table({
   columns: [
     {
       name: 'id',
-      type: 'varchar',
+      type: 'integer',
       unsigned: true,
       isPrimary: true,
       isGenerated: true,
-      generationStrategy: 'uuid',
+      generationStrategy: 'increment',
     },
     {
       name: 'post',

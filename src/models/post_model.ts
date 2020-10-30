@@ -14,8 +14,8 @@ import IPostModel from '../interfaces/post_model_interface';
 @Entity('posts')
 export default class PostModel {
   //implements IPostModel {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
   post: string;
