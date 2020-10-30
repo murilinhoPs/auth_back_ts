@@ -20,9 +20,6 @@ export default class PostModel {
   @Column()
   post: string;
 
-  @CreateDateColumn()
-  createdAt: Date;
-
   @ManyToOne((type) => UserModel, (user) => user.posts, { cascade: ['insert'] })
   @JoinColumn()
   user: UserModel;

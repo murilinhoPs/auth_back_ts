@@ -16,10 +16,6 @@ export default new Table({
       type: 'text',
     },
     {
-      name: 'createdAt',
-      type: 'datetime',
-    },
-    {
       name: 'userId',
       type: 'integer',
     },
