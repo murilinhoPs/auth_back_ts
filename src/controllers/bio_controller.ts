@@ -35,8 +35,8 @@ export default class BioController {
         },
       });
     } catch (error) {
-      return res.status(400).json({
-        message: error,
+      return res.status(401).json({
+        message: 'Não foi possível atualizar a bio.',
       });
     }
   }
@@ -56,7 +56,7 @@ export default class BioController {
         bio: userBio,
       });
     } catch (error) {
-      return res.status(400).json({
+      return res.status(401).json({
         message: 'Não foi possível encontrar nenhum usuário com esse id',
         error: error,
       });

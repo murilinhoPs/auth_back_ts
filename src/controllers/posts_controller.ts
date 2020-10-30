@@ -49,7 +49,7 @@ export default class PostsController {
 
       res.status(200).json({ posts: posts });
     } catch (error) {
-      res.status(404).json({ message: 'Usuário não existe' });
+      res.status(401).json({ message: 'Usuário não existe' });
     }
   }
 
@@ -86,7 +86,7 @@ export default class PostsController {
         newUserPosts: userDbNewPost.posts,
       });
     } catch (error) {
-      res.status(404).json({
+      res.status(401).json({
         message: 'Não foi possivel criar um novo post',
         error: error,
       });
@@ -117,7 +117,7 @@ export default class PostsController {
 
       res.status(200).json({ oldPost: searchedPost, newPost: newDbUserPost });
     } catch (error) {
-      res.status(404).json({
+      res.status(401).json({
         message: 'Não foi encontrado nenhum usuário ou post com esses ids',
         error: error,
       });
@@ -146,7 +146,7 @@ export default class PostsController {
         posts: updatedPosts.posts,
       });
     } catch (error) {
-      res.status(404).json({
+      res.status(401).json({
         message: 'Não foi encontrado nenhum usuário ou post com esses ids',
         error: error,
       });

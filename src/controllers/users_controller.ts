@@ -61,7 +61,7 @@ export default class UsersController {
             message:
               'Bio não encontrada. Especifique um id de usuário para encontrar sua bio',
           })
-        : res.status(404).json({ message: 'Usuário não existe', error: error });
+        : res.status(401).json({ message: 'Usuário não existe', error: error });
     }
   }
 
@@ -167,7 +167,7 @@ export default class UsersController {
         res.status(404).json({ message: 'Usuário não existe', error: error });
       }
     }
-    return res.status(403).json({
+    return res.status(401).json({
       message: 'Username ou email não encontrados no body;',
     });
   }
@@ -208,7 +208,7 @@ export default class UsersController {
           'Senha atualizada com sucesso! Mandamos sua nova senha no seu email cadastrado',
       });
     } catch (error) {
-      res.status(404).json({ message: 'Usuário não existe', error: error });
+      res.status(401).json({ message: 'Usuário não existe', error: error });
     }
   }
 
@@ -226,7 +226,7 @@ export default class UsersController {
 
       res.status(200).json({ message: 'Usuário deletado com sucesso' });
     } catch (error) {
-      res.status(404).json({ message: 'Usuário não existe', error: error });
+      res.status(401).json({ message: 'Usuário não existe', error: error });
     }
   }
 
@@ -280,7 +280,7 @@ export default class UsersController {
       });
 
       return res
-        .status(404)
+        .status(401)
         .json({ message: 'Usuário não encontrado', error: error });
     }
   }

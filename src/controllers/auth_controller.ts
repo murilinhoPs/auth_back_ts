@@ -123,7 +123,7 @@ export default class AuthController {
         process.env.REFRESH_TOKEN_SECRET,
         (error, decoded) => {
           if (error)
-            return res.status(403).json({
+            return res.status(401).json({
               message: 'Token inválido. Faça login novamente',
             });
 
@@ -132,12 +132,12 @@ export default class AuthController {
           req.user = accessToken;
 
           return res
-            .status(401)
+            .status(200)
             .json({ refreshAccess: true, accessToken: accessToken });
         }
       );
     } catch (error) {
-      return res.status(400).json({
+      return res.status(401).json({
         message: 'Token errado ou inválido',
       });
     }

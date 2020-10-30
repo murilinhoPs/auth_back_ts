@@ -15,14 +15,10 @@ const verifyJWT = async (req: Request, res: Response, next: NextFunction) => {
 
     const { user } = data as ITokenPayload;
 
-    console.log(data);
-
     req.user = user;
 
     return next();
   } catch (error) {
-    console.log(error);
-
     return res.redirect(303, '/auth/token/');
   }
 };
