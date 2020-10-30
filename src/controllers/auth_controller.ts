@@ -37,7 +37,7 @@ export default class AuthController {
       try {
         const { username, email } = requestData;
 
-        if (username) {
+        if (username && username !== '') {
           await userRepository
             .findOne({
               where: { username },
@@ -51,12 +51,12 @@ export default class AuthController {
           });
         }
 
-        if (email) {
+        if (email && email !== '') {
           await this.userValidation.validateEmail(email);
 
           await userRepository
             .findOne({
-              where: { username },
+              where: { email },
               select: ['password'],
             })
             .then((user) => (userPassword = user.password));
