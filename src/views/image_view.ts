@@ -4,7 +4,7 @@ class ImagerView {
   public render(image: IImageModel): object {
     return {
       id: image.id,
-      url: `${process.env.HOST}:${process.env.PORT}/uploads/${image.path}`,
+      url: `${process.env.HOST}/uploads/${image.path}`,
     };
   }
 }

@@ -10,7 +10,7 @@ class AllPostsView {
       user: {
         id: usersWithPosts.userId,
         username: usersWithPosts.username,
-        image_url: `${process.env.HOST}:${process.env.PORT}/uploads/${usersWithPosts.image_url}`,
+        image_url: `${process.env.HOST}/uploads/${usersWithPosts.image_url}`,
         posts: usersWithPosts.posts,
       },
     };

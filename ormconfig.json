@@ -6,6 +6,5 @@
   "cli": {
     "migrationsDir": "dist/database/migrations",
     "entitiesDir": "dist/models"
-  },
-  "logging": true
+  }
 }
