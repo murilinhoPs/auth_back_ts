@@ -5,7 +5,7 @@ export default new Table({
   columns: [
     {
       name: 'id',
-      type: 'string',
+      type: 'varchar',
       unsigned: true,
       isPrimary: true,
       isGenerated: true,
