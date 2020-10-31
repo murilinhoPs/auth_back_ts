@@ -1,4 +1,3 @@
-if (process.env.HOST !== 'localhost')
   module.exports = {
     type: 'postgres',
     url: process.env.DATABASE_URL,
@@ -9,15 +8,15 @@ if (process.env.HOST !== 'localhost')
       entitiesDir: 'src/models',
     },
   };
-else {
-  module.exports = {
-    type: 'sqlite',
-    database: 'database.sqlite',
-    entities: ['./src/models/**/*.ts'],
-    migrations: ['./scr/database/migrations/**/*.ts'],
-    cli: {
-      migrationsDir: ['src/database/migrations/'],
-      entitiesDir: 'src/models',
-    },
-  };
-}
+
+  // module.exports = {
+  //   type: 'sqlite',
+  //   database: 'database.sqlite',
+  //   entities: ['./src/models/**/*.ts'],
+  //   migrations: ['./scr/database/migrations/**/*.ts'],
+  //   cli: {
+  //     migrationsDir: ['src/database/migrations/'],
+  //     entitiesDir: 'src/models',
+  //   },
+  // };
+
