@@ -91,6 +91,10 @@ export default class AuthController {
 
       await tokenRepository.update(user.id, refreshToken);
 
+      const tokenInDb = await tokenRepository.findOne(user.id);
+
+      console.log(tokenInDb);
+
       res.status(200).json({
         userId: user.id,
         username: user.username,

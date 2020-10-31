@@ -10,31 +10,28 @@ import CheckUserReq from '../utils/check_user_req';
 
 export default class PostsController {
   async getPosts(req: Request, res: Response) {
-    const userRepository = getRepository(UserModel);
+    const postsRepository = getRepository(PostModel);
 
-    let usersWithPosts: Array<IAllPosts> = [];
+    let postsWithUsers: Array<IPostModel> = [];
 
     try {
-      const users = await userRepository.find({
-        relations: ['posts', 'image'],
+      const posts = await postsRepository.find({
+        relations: ['user', 'user.image'],
       });
 
-      users.forEach((user) =>
-        usersWithPosts.push({
-          userId: user.id,
-          username: user.username,
-          image_url: user.image.path,
-          posts: user.posts,
+      posts.forEach((value) =>
+        postsWithUsers.push({
+          post: value.post,
+          id: value.id,
+          user: value.user,
         })
       );
 
-      res.status(201).send(AllPostsView.renderMany(usersWithPosts));
+      res.status(201).send(AllPostsView.renderMany(postsWithUsers));
     } catch (error) {
-      res
-        .status(404)
-        .json({
-          message: 'Não foi possível encontrar os posts ou não existem posts',
-        });
+      res.status(404).json({
+        message: 'Não foi possível encontrar os posts ou não existem posts',
+      });
     }
   }
 

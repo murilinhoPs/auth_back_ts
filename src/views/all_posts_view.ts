@@ -1,3 +1,4 @@
+import IPostModel from '../../dist/interfaces/post_model_interface';
 import IAllPosts from '../interfaces/all_posts_interface';
 
 class AllPostsView {
@@ -5,18 +6,17 @@ class AllPostsView {
     this.renderMany = this.renderMany.bind(this);
   }
 
-  private render(usersWithPosts: IAllPosts) {
+  private render(postWithUser: IPostModel) {
     return {
-      user: {
-        id: usersWithPosts.userId,
-        username: usersWithPosts.username,
-        image_url: `${process.env.HOST}/uploads/${usersWithPosts.image_url}`,
-        posts: usersWithPosts.posts,
+      post: {
+        id: postWithUser.id,
+        content: postWithUser.post,
+        user: postWithUser.user,
       },
     };
   }
 
-  public renderMany(allPosts: IAllPosts[]) {
+  public renderMany(allPosts: IPostModel[]) {
     return allPosts.map((post) => this.render(post));
   }
 }
