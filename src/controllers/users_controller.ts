@@ -79,9 +79,18 @@ export default class UsersController {
 
     CheckReqFile(req, res);
 
-    try {
-      const userTableRepository = getRepository(UserModel);
+    const userTableRepository = getRepository(UserModel);
 
+    const existentUser = userTableRepository.findOne({
+      where: { username: requestData.username },
+    });
+
+    if (existentUser)
+      return res
+        .status(400)
+        .json({ message: 'Usuário já existe. Tente outro username ou email' });
+
+    try {
       const hashedPassword = await hashPassword(requestData.password);
 
       const newUserImage: IImageModel = {
