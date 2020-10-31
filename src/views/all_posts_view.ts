@@ -1,5 +1,4 @@
-import IPostModel from '../../dist/interfaces/post_model_interface';
-import IAllPosts from '../interfaces/all_posts_interface';
+import IPostModel from '../interfaces/post_model_interface';
 
 class AllPostsView {
   constructor() {
