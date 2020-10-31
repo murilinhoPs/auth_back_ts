@@ -138,7 +138,7 @@ export default class AuthController {
       );
     } catch (error) {
       return res.status(401).json({
-        message: 'Refresh token errado ou inválido',
+        message: 'Refresh token errado ou inválido. Faça login novamente',
       });
     }
   }
