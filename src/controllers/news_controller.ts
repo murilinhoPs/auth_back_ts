@@ -11,8 +11,6 @@ class NewsController {
   }
 
   public async getNews(req: Request, res: Response) {
-    // if (!req.body.refreshToken) return res.sendStatus(403);
-
     try {
       const newsResponse = await axios.get(this.url);
 
@@ -23,8 +21,7 @@ class NewsController {
         .send(NewsView.renderMany(newsResponseData));
     } catch (err) {
       return res.status(400).json({
-        message: 'Não conseguiu conectar com o serviço, a url de noticias',
-        error: err,
+        message: 'Não conseguiu conectar com o serviço de noticias',
       });
     }
   }

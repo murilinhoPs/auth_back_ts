@@ -14,20 +14,28 @@ export default class PostsController {
 
     let usersWithPosts: Array<IAllPosts> = [];
 
-    const users = await userRepository.find({
-      relations: ['posts', 'image'],
-    });
+    try {
+      const users = await userRepository.find({
+        relations: ['posts', 'image'],
+      });
 
-    users.forEach((user) =>
-      usersWithPosts.push({
-        userId: user.id,
-        username: user.username,
-        image_url: user.image.path,
-        posts: user.posts,
-      })
-    );
+      users.forEach((user) =>
+        usersWithPosts.push({
+          userId: user.id,
+          username: user.username,
+          image_url: user.image.path,
+          posts: user.posts,
+        })
+      );
 
-    res.status(201).send(AllPostsView.renderMany(usersWithPosts));
+      res.status(201).send(AllPostsView.renderMany(usersWithPosts));
+    } catch (error) {
+      res
+        .status(404)
+        .json({
+          message: 'Não foi possível encontrar os posts ou não existem posts',
+        });
+    }
   }
 
   async getPostsFromUser(req: Request, res: Response) {
@@ -47,7 +55,7 @@ export default class PostsController {
 
       user.posts.forEach((post) => posts.push(post));
 
-      res.status(200).json({ posts: posts });
+      res.status(200).json({ userPosts: posts });
     } catch (error) {
       res.status(401).json({ message: 'Usuário não existe' });
     }

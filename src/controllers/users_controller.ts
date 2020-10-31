@@ -61,7 +61,10 @@ export default class UsersController {
             message:
               'Bio não encontrada. Especifique um id de usuário para encontrar sua bio',
           })
-        : res.status(401).json({ message: 'Usuário não existe', error: error });
+        : res.status(401).json({
+            message: 'Sem informações, usuário não existe',
+            error: error,
+          });
     }
   }
 
@@ -133,7 +136,7 @@ export default class UsersController {
       });
 
       return res.status(400).json({
-        message: error,
+        message: 'Não foi possível criar um usuário',
         error: error,
       });
     }
@@ -268,7 +271,7 @@ export default class UsersController {
       const newDbImage = await imageRepository.findOne(id);
 
       res.status(200).json({
-        message: 'Delete image',
+        message: 'Imagem nova adicionada com sucesso!',
         oldImage: image,
         newImage: newDbImage,
       });

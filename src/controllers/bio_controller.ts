@@ -56,9 +56,9 @@ export default class BioController {
         bio: userBio,
       });
     } catch (error) {
-      return res.status(401).json({
-        message: 'Não foi possível encontrar nenhum usuário com esse id',
-        error: error,
+      return res.status(404).json({
+        message:
+          'Não foi possível encontrar nenhuma bio de um usuário com esse id',
       });
     }
   }

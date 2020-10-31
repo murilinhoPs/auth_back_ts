@@ -26,7 +26,7 @@ export default class AuthController {
         res.status(400).send({ mensagem: 'Não tem username ou email' });
 
       if (!requestData.password)
-        res.status(400).send({ mensagem: 'password required' });
+        res.status(400).send({ mensagem: 'Requer senha' });
 
       const userRepository = getRepository(UserModel);
       const tokenRepository = getRepository(RefreshTokenModel);
@@ -73,7 +73,9 @@ export default class AuthController {
       }
 
       if (!checkValidPassword(requestData.password, userPassword)) {
-        res.status(401).json({ error: 'Sem permissão. Senha está incorreta.' });
+        res
+          .status(401)
+          .json({ message: 'Sem permissão. Senha está incorreta.' });
         return;
       }
 
@@ -96,7 +98,7 @@ export default class AuthController {
         refreshToken: generatedRefreshToken,
       });
     } catch (err) {
-      res.status(400).send({ erro: err.message });
+      res.status(400).send({ message: err.message });
     }
   }
 
@@ -115,8 +117,6 @@ export default class AuthController {
         where: { token: refreshToken },
         relations: ['user'],
       });
-
-      console.log(tokenWithUser);
 
       jwt.verify(
         refreshToken,
@@ -138,7 +138,7 @@ export default class AuthController {
       );
     } catch (error) {
       return res.status(401).json({
-        message: 'Token errado ou inválido',
+        message: 'Refresh token errado ou inválido',
       });
     }
   }
