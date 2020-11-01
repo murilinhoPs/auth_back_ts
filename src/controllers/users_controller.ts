@@ -81,7 +81,7 @@ export default class UsersController {
 
     const userTableRepository = getRepository(UserModel);
 
-    const existentUser = userTableRepository.findOne({
+    const existentUser = await userTableRepository.findOne({
       where: { username: requestData.username },
     });
 
