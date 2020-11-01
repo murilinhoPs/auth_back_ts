@@ -1,3 +1,4 @@
+import user_router from '../../dist/routes/user_router';
 import IPostModel from '../interfaces/post_model_interface';
 
 class AllPostsView {
@@ -10,7 +11,14 @@ class AllPostsView {
       post: {
         id: postWithUser.id,
         content: postWithUser.post,
-        user: postWithUser.user,
+        user: {
+          username: postWithUser.user.username,
+          email: postWithUser.user.email,
+          image: {
+            id: postWithUser.user.image.id,
+            path: `${process.env.HOST}/uploads/${postWithUser.user.image.path}`,
+          },
+        },
       },
     };
   }

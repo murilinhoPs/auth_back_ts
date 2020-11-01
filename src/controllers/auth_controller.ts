@@ -109,8 +109,6 @@ export default class AuthController {
   async refreshAccessToken(req: Request, res: Response, next: NextFunction) {
     const refreshToken: string = req.headers['x-refresh-token'] as string;
 
-    console.log(refreshToken);
-
     if (!refreshToken)
       return res.status(401).json({ message: 'Refresh token não encontrado' });
 
@@ -121,6 +119,8 @@ export default class AuthController {
         where: { token: refreshToken },
         relations: ['user'],
       });
+
+      console.log(tokenWithUser.token);
 
       jwt.verify(
         refreshToken,
