@@ -1,4 +1,3 @@
-import user_router from '../../dist/routes/user_router';
 import IPostModel from '../interfaces/post_model_interface';
 
 class AllPostsView {
