@@ -106,7 +106,7 @@ export default class AuthController {
     }
   }
 
-  async refreshAccessToken(req: Request, res: Response, next: NextFunction) {
+  static async refreshAccessToken(req: Request, res: Response) {
     const refreshToken: string = req.headers['x-refresh-token'] as string;
 
     if (!refreshToken)

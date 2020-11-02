@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import AuthController from '../controllers/auth_controller';
 import ITokenPayload from '../interfaces/token_payload_interface';
 
 const verifyJWT = async (req: Request, res: Response, next: NextFunction) => {
@@ -21,7 +22,7 @@ const verifyJWT = async (req: Request, res: Response, next: NextFunction) => {
 
     return next();
   } catch (error) {
-    return res.redirect(303, '/auth/token/');
+    return AuthController.refreshAccessToken(req, res); //res.redirect('/auth/token/');
   }
 };
 

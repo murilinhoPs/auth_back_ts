@@ -7,7 +7,7 @@ const routes = Router();
 
 routes
   .post('/login', authController.authUser)
-  .get('/token', authController.refreshAccessToken)
+  // .get('/token', authController.refreshAccessToken)
   .delete('/logout/:id', verifyJWT, authController.logoutUser);
 
 export default routes;
