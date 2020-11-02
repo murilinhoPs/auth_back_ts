@@ -4,7 +4,7 @@ dist
 dist/
 /dist
 
-# keys.json
+keys.json
 
 uploads/*
 
