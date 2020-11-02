@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
+import { GcsFileUpload } from 'gcs-file-upload';
 import { getRepository } from 'typeorm';
 import fs from 'fs';
+import path from 'path';
 import 'express-async-errors';
 
 import UserModel from '../models/users_model';
@@ -18,9 +20,11 @@ import CheckReqFile from '../utils/check_req_file';
 import MailService from '../services/mailing_service';
 import IMailOptions from '../interfaces/mail_options_interface';
 import IRefreshToken from '../interfaces/refresh_token_interface';
+import UploadImage from '../utils/upload_image';
 
 export default class UsersController {
   userValidation = new UserValidation();
+  uploadImage = new UploadImage();
 
   constructor() {
     this.postUser = this.postUser.bind(this);
@@ -82,7 +86,7 @@ export default class UsersController {
     const userTableRepository = getRepository(UserModel);
 
     const existentUser = await userTableRepository.findOne({
-      where: { username: requestData.username },
+      where: { username: requestData.username, email: requestData.email },
     });
 
     if (existentUser)
@@ -93,9 +97,9 @@ export default class UsersController {
     try {
       const hashedPassword = await hashPassword(requestData.password);
 
-      const newUserImage: IImageModel = {
-        path: requestImage.filename,
-      };
+      const gcsImage = await this.uploadImage.upload(requestImage, res);
+
+      console.log(gcsImage);
 
       const baseBio: IBioModel = {
         content: `Oi eu sou o ${requestData.username}, prazer!`,
@@ -107,6 +111,10 @@ export default class UsersController {
 
       const baseRefreshToken: IRefreshToken = {
         token: '',
+      };
+
+      const newUserImage: IImageModel = {
+        path: gcsImage,
       };
 
       const newUser: IUserModel = {
