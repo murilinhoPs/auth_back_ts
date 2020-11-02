@@ -15,7 +15,7 @@ class AllPostsView {
           email: postWithUser.user.email,
           image: {
             id: postWithUser.user.image.id,
-            path: `${process.env.HOST}/uploads/${postWithUser.user.image.path}`,
+            path: postWithUser.user.image.path,
           },
         },
       },
